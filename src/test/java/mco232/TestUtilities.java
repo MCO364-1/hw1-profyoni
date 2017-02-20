@@ -5,7 +5,7 @@ import static org.junit.Assert.*;
 
 public class TestUtilities {
 
-    double TOLERANCE = 0.000_001;
+    final double TOLERANCE = 0.000_001;
 
     @Test
     public void fToC() {
@@ -64,7 +64,12 @@ public class TestUtilities {
     
     @Test(expected = IllegalArgumentException.class)
     public void nullTemperatureUnitFrom() {
-        double actual = Utilities.convert(255.37222222, null, TemperatureUnit.Fahrenheit);
+        double actual = Utilities.convert(255.37222222, TemperatureUnit.Fahrenheit, null);
+    }
+    
+    @Test(expected = UnsupportedOperationException.class)
+    public void rankineNotSupported() {
+        double actual = Utilities.convert(255.37222222, TemperatureUnit.Rankine, TemperatureUnit.Fahrenheit);
     }
 
 }

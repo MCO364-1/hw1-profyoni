@@ -28,8 +28,8 @@ public class Utilities {
 
     public static double convert(double temp, TemperatureUnit from, TemperatureUnit to) {
         if (from == null || to == null) {
-            String s = String.format("Arguments 'to' or 'from' are null. Actual values to=[%s], from=[%s]");
-            throw new IllegalArgumentException();
+            String s = String.format("Arguments 'to' or 'from' are null. Actual values to=[%s], from=[%s]", to, from);
+            throw new IllegalArgumentException(s);
         }
         switch (from) {
             case Kelvin:
@@ -61,11 +61,11 @@ public class Utilities {
                 }
 
         }
-        String s = String.format("Arguments 'to' or 'from' are not supported. Actual values to=[%s], from=[%s]");
-        throw new IllegalArgumentException();
+        String s = String.format("Arguments 'to' or 'from' are not supported. Actual values to=[%s], from=[%s]", to, from);
+        throw new UnsupportedOperationException(s);
     }
 }
 
 enum TemperatureUnit {
-    Kelvin, Celsius, Fahrenheit
+    Kelvin, Celsius, Fahrenheit, Rankine
 };
